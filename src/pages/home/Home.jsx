@@ -1,9 +1,7 @@
-import HeaderNavBar from "../../components/AppBar";
-
 const Home = () => {
   return (
     <div>
-      <HeaderNavBar />
+      <h1>Home</h1>
     </div>
   );
 };
