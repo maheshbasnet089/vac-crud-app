@@ -13,10 +13,12 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { CssBaseline } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function HeaderNavBar() {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -56,7 +58,7 @@ function HeaderNavBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            VACBLOG
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -88,13 +90,13 @@ function HeaderNavBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem onClick={handleCloseNavMenu}>
+              <MenuItem onClick={() => navigate("/")}>
                 <Typography textAlign="center">Home</Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
+              <MenuItem onClick={() => navigate("/blogs")}>
                 <Typography textAlign="center">Blogs</Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
+              <MenuItem onClick={() => navigate("/about")}>
                 <Typography textAlign="center">About</Typography>
               </MenuItem>
             </Menu>
@@ -116,23 +118,23 @@ function HeaderNavBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            VACBLOG
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
-              onClick={handleCloseNavMenu}
+              onClick={() => navigate("/")}
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Home
             </Button>
             <Button
-              onClick={handleCloseNavMenu}
+              onClick={() => navigate("/blogs")}
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Blogs
             </Button>
             <Button
-              onClick={handleCloseNavMenu}
+              onClick={() => navigate("/about")}
               sx={{ my: 2, color: "white", display: "block" }}
             >
               About
