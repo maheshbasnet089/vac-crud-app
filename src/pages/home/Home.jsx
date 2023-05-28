@@ -7,8 +7,12 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box, CircularProgress } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  // for navigation
+  const navigate = useNavigate();
+
   const [blogs, setBlogs] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -52,7 +56,7 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          {blogs.map((blog, index) => {
+          {blogs.map((blog) => {
             return (
               <Card key={blog.id} sx={{ maxWidth: 345 }}>
                 <CardMedia
@@ -69,8 +73,12 @@ export default function Home() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">Share</Button>
-                  <Button size="small">Learn More</Button>
+                  <Button
+                    size="small"
+                    onClick={() => navigate(`/single-blog/${blog.id}`)}
+                  >
+                    Learn More
+                  </Button>
                 </CardActions>
               </Card>
             );
