@@ -1,5 +1,5 @@
 import { Person } from "@mui/icons-material";
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import axios from "axios";
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -10,7 +10,10 @@ const Singleblog = () => {
   const [loading, setLoading] = React.useState(true);
 
   const getSingleBlog = async () => {
-    var response = await axios.get(``);
+    var response = await axios.get(
+      `https://646ef55e09ff19b12086567f.mockapi.io/Blog/${id}`
+    );
+    console.log(response.data);
     if (response.data !== null) {
       setBlog(response.data);
       setLoading(false);
@@ -22,35 +25,44 @@ const Singleblog = () => {
   }, []);
 
   return (
-    <Box sx={{ p: 3 }}>
-      {/* image starts */}
-      <img
-        src="https://images.unsplash.com/photo-1661956601031-4cf09efadfce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=600&q=60"
-        style={{ width: "100%", objectFit: "cover", height: "450px" }}
-      />
-      {/* image end */}
-
-      <Box>
-        {/* author start */}
-        <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-          <Person />
-          <h4>Manish Regmi</h4>
+    <>
+      {loading === true ? (
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "30vh",
+          }}
+        >
+          <CircularProgress size={50} />
         </Box>
-        {/* author end */}
-        <hr />
+      ) : (
+        <Box sx={{ p: 3 }}>
+          {/* image starts */}
+          <img
+            src={blog.image}
+            style={{ width: "100%", objectFit: "cover", height: "450px" }}
+          />
+          {/* image end */}
 
-        {/* description starts  */}
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti
-          asperiores explicabo iusto dolorem expedita iure ad doloremque cum
-          labore. Non, repellat nemo porro omnis amet quo alias odit, molestias
-          aliquam dicta excepturi perspiciatis sequi, ut nihil maxime. Commodi
-          similique dolore rem porro. Laboriosam maxime eius similique eveniet
-          ducimus. Ex, deleniti.
-        </p>
-        {/* description end  */}
-      </Box>
-    </Box>
+          <Box>
+            {/* author start */}
+            <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+              <Person />
+              <h4>{blog.title}</h4>
+            </Box>
+            {/* author end */}
+            <hr />
+
+            {/* description starts  */}
+            <p>{blog.description}</p>
+            {/* description end  */}
+          </Box>
+        </Box>
+      )}
+    </>
   );
 };
 
