@@ -1,10 +1,25 @@
 import { Person } from "@mui/icons-material";
 import { Box } from "@mui/material";
+import axios from "axios";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 const Singleblog = () => {
   const { id } = useParams();
-  console.log(id);
+  const [blog, setBlog] = React.useState({});
+  const [loading, setLoading] = React.useState(true);
+
+  const getSingleBlog = async () => {
+    var response = await axios.get(``);
+    if (response.data !== null) {
+      setBlog(response.data);
+      setLoading(false);
+    }
+  };
+
+  React.useEffect(() => {
+    getSingleBlog();
+  }, []);
 
   return (
     <Box sx={{ p: 3 }}>
