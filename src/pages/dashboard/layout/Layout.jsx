@@ -16,6 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Outlet } from "react-router-dom";
+import { Add, ListAlt } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -35,9 +36,17 @@ function ResponsiveDrawer(props) {
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <MailIcon />
+              <ListAlt />
             </ListItemIcon>
-            <ListItemText primary="Inbox" />
+            <ListItemText primary="Blogs" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <Add />
+            </ListItemIcon>
+            <ListItemText primary="Add Blog" />
           </ListItemButton>
         </ListItem>
       </List>
