@@ -6,16 +6,17 @@ import axios from "axios";
 import React from "react";
 
 export default function AddBlog() {
-  const [image, setImage] = React.useState(null);
+  // const [image, setImage] = React.useState(null);
+  // const [title,setTitle] = React.useState("");
+  // const [description,setDescription] = React.useState("");
 
+  const [formData, setFormData] = React.useState({
+    title: "",
+    image: "",
+    description: "",
+  });
   const addBlog = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    // a
-    const formData = new FormData();
-    formData.append("title", data.get("title"));
-    formData.append("image", image);
-    formData.append("description", data.get("description"));
 
     var response = await axios.post(
       "https://63f129a95703e063fa53bd15.mockapi.io/Blog",
@@ -34,14 +35,26 @@ export default function AddBlog() {
       noValidate
       sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 2 }}
     >
-      <TextField label="Title" name="title" />
+      <TextField
+        label="Title"
+        name="title"
+        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+      />
       <Typography>Image</Typography>
       <TextField
-        onChange={(e) => setImage(e.target.files[0])}
-        type="file"
+        onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+        type="url"
         name="image"
       />
-      <TextField label="Description" rows={4} multiline name="description" />
+      <TextField
+        label="Description"
+        rows={4}
+        multiline
+        name="description"
+        onChange={(e) =>
+          setFormData({ ...formData, description: e.target.value })
+        }
+      />
       <Button type="submit" variant="contained">
         Add
       </Button>
