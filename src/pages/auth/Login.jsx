@@ -18,6 +18,11 @@ export default function Login() {
   const login = async (e) => {
     e.preventDefault();
     console.log(formData);
+    if (formData.email === user.email && formData.password === user.password) {
+      window.location.replace("/admin");
+    } else {
+      alert("Invalid Credentials!!");
+    }
   };
 
   return (
@@ -51,7 +56,7 @@ export default function Login() {
           }
         />
         <Button type="submit" variant="contained">
-          Add
+          Sign In
         </Button>
       </Box>
     </Container>

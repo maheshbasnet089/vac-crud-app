@@ -25,7 +25,7 @@ function App() {
           </Route>
           {/* admin dashboard */}
           <Route path="/admin/" element={<ResponsiveDrawer />}>
-            <Route path="list" element={<ListBlog />} />
+            <Route path="" element={<ListBlog />} />
             <Route path="add" element={<AddBlog />} />
           </Route>
         </Routes>
