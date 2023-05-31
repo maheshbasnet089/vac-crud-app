@@ -1,23 +1,23 @@
 // import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button, Typography } from "@mui/material";
+import { Button, CircularProgress, Typography } from "@mui/material";
 import axios from "axios";
 import React from "react";
 
 export default function AddBlog() {
-  // const [image, setImage] = React.useState(null);
-  // const [title,setTitle] = React.useState("");
-  // const [description,setDescription] = React.useState("");
-
   const [formData, setFormData] = React.useState({
     title: "",
     image: "",
     description: "",
   });
-  const addBlog = async (e) => {
-    e.preventDefault();
 
+  const [loading, setLoading] = React.useState(false);
+  const addBlog = async (e) => {
+    setLoading(true);
+
+    e.preventDefault();
+    console.log(formData);
     var response = await axios.post(
       "https://63f129a95703e063fa53bd15.mockapi.io/Blog",
       formData
@@ -25,6 +25,12 @@ export default function AddBlog() {
     console.log(formData);
     alert("Blog created successfully");
     console.log(response);
+    setLoading(false);
+    setFormData({
+      title: "",
+      image: "",
+      description: "",
+    });
   };
 
   return (
@@ -38,10 +44,13 @@ export default function AddBlog() {
       <TextField
         label="Title"
         name="title"
+        value={formData.title}
         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
       />
       <Typography>Image</Typography>
       <TextField
+        value={formData.image}
+        label="Please enter image url"
         onChange={(e) => setFormData({ ...formData, image: e.target.value })}
         type="url"
         name="image"
@@ -51,12 +60,17 @@ export default function AddBlog() {
         rows={4}
         multiline
         name="description"
+        value={formData.description}
         onChange={(e) =>
           setFormData({ ...formData, description: e.target.value })
         }
       />
-      <Button type="submit" variant="contained">
-        Add
+      <Button
+        disabled={loading ? true : false}
+        type="submit"
+        variant="contained"
+      >
+        {loading ? <CircularProgress size={25} /> : "Add"}
       </Button>
     </Box>
   );
