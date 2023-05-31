@@ -12,9 +12,9 @@ export default function AddBlog() {
     description: "",
   });
 
-  const [loading, setLoading] = React.useState(false);
+  const [adding, setAdding] = React.useState(false);
   const addBlog = async (e) => {
-    setLoading(true);
+    setAdding(true);
 
     e.preventDefault();
     console.log(formData);
@@ -25,7 +25,7 @@ export default function AddBlog() {
     console.log(formData);
     alert("Blog created successfully");
     console.log(response);
-    setLoading(false);
+    setAdding(false);
     setFormData({
       title: "",
       image: "",
@@ -66,11 +66,11 @@ export default function AddBlog() {
         }
       />
       <Button
-        disabled={loading ? true : false}
+        disabled={adding ? true : false}
         type="submit"
         variant="contained"
       >
-        {loading ? <CircularProgress size={25} /> : "Add"}
+        {adding ? <CircularProgress size={25} /> : "Add"}
       </Button>
     </Box>
   );
