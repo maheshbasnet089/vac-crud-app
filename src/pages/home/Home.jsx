@@ -18,7 +18,7 @@ export default function Home() {
 
   const getBLogs = async () => {
     var response = await axios.get(
-      "https://646ef55e09ff19b12086567f.mockapi.io/Blog"
+      "https://63f129a95703e063fa53bd15.mockapi.io/Blog"
     );
     setBlogs(response.data);
     setLoading(false);

@@ -11,7 +11,7 @@ const Singleblog = () => {
 
   const getSingleBlog = async () => {
     var response = await axios.get(
-      `https://646ef55e09ff19b12086567f.mockapi.io/Blog/${id}`
+      `https://63f129a95703e063fa53bd15.mockapi.io/Blog/${id}`
     );
     console.log(response.data);
     if (response.data !== null) {

@@ -11,16 +11,16 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Add, ListAlt } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
+  const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -33,7 +33,7 @@ function ResponsiveDrawer(props) {
       <Toolbar />
       <Divider />
       <List>
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={() => navigate("/admin/")}>
           <ListItemButton>
             <ListItemIcon>
               <ListAlt />
@@ -41,7 +41,7 @@ function ResponsiveDrawer(props) {
             <ListItemText primary="Blogs" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={() => navigate("/admin/add")}>
           <ListItemButton>
             <ListItemIcon>
               <Add />

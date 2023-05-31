@@ -14,13 +14,19 @@ export default function ListBlog() {
 
   const getBLogs = async () => {
     var response = await axios.get(
-      "https://646ef55e09ff19b12086567f.mockapi.io/Blog"
+      "https://63f129a95703e063fa53bd15.mockapi.io/Blog"
     );
-    setBlogs(response.data);
+    setBlogs(response.data.reverse());
     setLoading(false);
   };
 
-  console.log(blogs, "mah blog ho");
+  const deleteBlog = async (id) => {
+    const response = await axios.delete(
+      `https://63f129a95703e063fa53bd15.mockapi.io/Blog/${id}`
+    );
+    console.log(response);
+    getBLogs();
+  };
 
   React.useEffect(() => {
     getBLogs();
@@ -69,7 +75,14 @@ export default function ListBlog() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">Learn More</Button>
+                  <Button size="small">Edit</Button>
+                  <Button
+                    size="small"
+                    onClick={() => deleteBlog(blog.id)}
+                    color="error"
+                  >
+                    Delete
+                  </Button>
                 </CardActions>
               </Card>
             );

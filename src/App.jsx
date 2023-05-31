@@ -6,6 +6,7 @@ import Blogs from "./pages/blogs/Blogs";
 import Singleblog from "./pages/blogs/Single-blog";
 import ResponsiveDrawer from "./pages/dashboard/layout/Layout";
 import ListBlog from "./pages/dashboard/blog/ListBlog";
+import AddBlog from "./pages/dashboard/blog/AddBlog";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           </Route>
           <Route path="/admin/" element={<ResponsiveDrawer />}>
             <Route path="" element={<ListBlog />} />
+            <Route path="add" element={<AddBlog />} />
           </Route>
         </Routes>
       </Router>
