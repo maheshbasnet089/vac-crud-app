@@ -15,16 +15,13 @@ export default function AddBlog() {
   const [adding, setAdding] = React.useState(false);
   const addBlog = async (e) => {
     setAdding(true);
-
     e.preventDefault();
     console.log(formData);
-    var response = await axios.post(
+    await axios.post(
       "https://63f129a95703e063fa53bd15.mockapi.io/Blog",
       formData
     );
-    console.log(formData);
     alert("Blog created successfully");
-    console.log(response);
     setAdding(false);
     setFormData({
       title: "",

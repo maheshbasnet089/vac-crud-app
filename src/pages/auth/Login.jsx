@@ -1,0 +1,49 @@
+// import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import { Button, Typography } from "@mui/material";
+import React from "react";
+
+export default function AddBlog() {
+  const [formData, setFormData] = React.useState({
+    email: "",
+    password: "",
+  });
+
+  const user = {
+    email: "test@gmail.com",
+    password: "password",
+  };
+
+  const login = async (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+  return (
+    <Box
+      onSubmit={(e) => login(e)}
+      component="form"
+      noValidate
+      sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 2 }}
+    >
+      <TextField
+        label="Email"
+        name="email"
+        value={formData.email}
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+      />
+      <Typography>Image</Typography>
+
+      <TextField
+        label="Enter your password"
+        name="password"
+        value={formData.password}
+        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+      />
+      <Button type="submit" variant="contained">
+        Add
+      </Button>
+    </Box>
+  );
+}
